@@ -26,13 +26,13 @@ fun Application.module() {
     configureRouting()
     configureSerialization()
 
-    val db = getConnection()
-    transaction {
-        val emps = Employee.all()
-        emps.forEach {
-
-        }
-    }
+//    val db = getConnection()
+//    transaction {
+//        val emps = Employee.all()
+//        emps.forEach {
+//
+//        }
+//    }
 }
 
 @Throws(URISyntaxException::class, SQLException::class)
