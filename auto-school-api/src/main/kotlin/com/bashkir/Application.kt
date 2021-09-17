@@ -24,11 +24,14 @@ fun Application.module() {
     configureSerialization()
 
     routing {
+        var lesson: LessonType? = null
         transaction {
-            get("/") {
-                call.respond(LessonType[1])
-            }
+            lesson = LessonType[1]
         }
+        get("/") {
+            call.respond(lesson!!)
+        }
+
     }
 }
 
