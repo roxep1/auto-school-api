@@ -6,12 +6,10 @@ import com.bashkir.plugins.configureSerialization
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.net.URI
 import java.net.URISyntaxException
-import java.sql.Connection
-import java.sql.DriverManager
 import java.sql.SQLException
 
 
@@ -42,6 +40,8 @@ private fun getConnection(): Database {
     val dbUri = URI(System.getenv("DATABASE_URL"))
     val dbUrl =
         "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath().toString() + "?sslmode=require"
+    val username = dbUri.userInfo.split(":").toTypedArray()[0]
+    val password = dbUri.userInfo.split(":").toTypedArray()[1]
     return Database.connect(dbUrl, driver = "com.impossibl.postgres.jdbc.PGDriver",
-        user = "Admin", password = "1234567890")
+        user = username, password = password)
 }
