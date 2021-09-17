@@ -37,11 +37,11 @@ fun Application.module() {
 
 @Throws(URISyntaxException::class, SQLException::class)
 private fun getConnection(): Database {
-    val dbUri = URI(System.getenv("DATABASE_URL"))
-    val dbUrl =
-        "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath().toString() + "?sslmode=require"
+//    val dbUri = URI(System.getenv("JDBC_DATABASE_URL"))
+    val dbUrl = System.getenv("JDBC_DATABASE_URL")
+//        "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path.toString() + "?sslmode=require"
 //    val username = dbUri.userInfo.split(":").toTypedArray()[0]
 //    val password = dbUri.userInfo.split(":").toTypedArray()[1]
-    return Database.connect(dbUrl, driver = "com.impossibl.postgres.jdbc.PGDriver",
+    return Database.connect(dbUrl, driver = "org.postgresql.Driver",
         user = "Admin", password = "1234567890")
 }
