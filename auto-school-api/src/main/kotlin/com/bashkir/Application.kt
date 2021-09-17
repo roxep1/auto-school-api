@@ -1,6 +1,7 @@
 package com.bashkir
 
 import com.bashkir.models.Employee
+import com.bashkir.models.LessonType
 import com.bashkir.plugins.configureRouting
 import com.bashkir.plugins.configureSerialization
 import io.ktor.application.*
@@ -28,10 +29,7 @@ fun Application.module() {
 
     val db = getConnection()
     transaction {
-        val emps = Employee.all()
-        emps.forEach {
-
-        }
+        LessonType.all()
     }
 }
 

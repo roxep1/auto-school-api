@@ -22,7 +22,7 @@ open class StringIdTable(name: String = "", columnName: String = "id", columnLen
         override val primaryKey by lazy { super.primaryKey ?: PrimaryKey(id) }
 }
 
-object Employees: StringIdTable("phoneNumber", "phonenumber", 11) {
+object Employees: StringIdTable("phonenumber", "phonenumber", 11) {
         val salary: Column<Float> = float("salary")
         val coef: Column<Int> = integer("coef")
         val positionName: Column<String> = text("positionname")
