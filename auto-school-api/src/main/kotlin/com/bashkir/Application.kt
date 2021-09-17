@@ -1,9 +1,13 @@
 package com.bashkir
 
-import com.bashkir.plugins.*
+import com.bashkir.models.Employee
+import com.bashkir.plugins.configureRouting
+import com.bashkir.plugins.configureSerialization
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
 import java.net.URI
 import java.net.URISyntaxException
 import java.sql.Connection
@@ -23,14 +27,21 @@ fun Application.module() {
     }
     configureRouting()
     configureSerialization()
-    getConnection()
+
+    val db = getConnection()
+    transaction {
+        val emps = Employee.all()
+        emps.forEach {
+
+        }
+    }
 }
 
 @Throws(URISyntaxException::class, SQLException::class)
-private fun getConnection(): Connection? {
+private fun getConnection(): Database {
     val dbUri = URI(System.getenv("DATABASE_URL"))
-    val username: String = dbUri.userInfo.split(":")[0]
-    val password: String = dbUri.userInfo.split(":")[1]
-    val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path
-    return DriverManager.getConnection(dbUrl, username, password)
+    val dbUrl =
+        "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath().toString() + "?sslmode=require"
+    return Database.connect(dbUrl, driver = "com.impossibl.postgres.jdbc.PGDriver",
+        user = "Admin", password = "1234567890")
 }
