@@ -19,17 +19,16 @@ fun main(args: Array<String>): Unit =
 
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
-    routing {
-        get("/") {
-            call.respond(Customer(1))
-        }
-    }
+    getConnection()
     configureRouting()
     configureSerialization()
 
-    val db = getConnection()
-    transaction {
-        LessonType.all()
+    routing {
+        transaction {
+            get("/") {
+                call.respond(LessonType[1])
+            }
+        }
     }
 }
 
@@ -40,6 +39,8 @@ private fun getConnection(): Database {
 //        "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path.toString() + "?sslmode=require"
 //    val username = dbUri.userInfo.split(":").toTypedArray()[0]
 //    val password = dbUri.userInfo.split(":").toTypedArray()[1]
-    return Database.connect(dbUrl, driver = "org.postgresql.Driver",
-        user = "Admin", password = "1234567890")
+    return Database.connect(
+        dbUrl, driver = "org.postgresql.Driver",
+        user = "Admin", password = "1234567890"
+    )
 }
