@@ -40,8 +40,8 @@ private fun getConnection(): Database {
     val dbUri = URI(System.getenv("DATABASE_URL"))
     val dbUrl =
         "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath().toString() + "?sslmode=require"
-    val username = dbUri.userInfo.split(":").toTypedArray()[0]
-    val password = dbUri.userInfo.split(":").toTypedArray()[1]
+//    val username = dbUri.userInfo.split(":").toTypedArray()[0]
+//    val password = dbUri.userInfo.split(":").toTypedArray()[1]
     return Database.connect(dbUrl, driver = "com.impossibl.postgres.jdbc.PGDriver",
-        user = username, password = password)
+        user = "Admin", password = "1234567890")
 }
