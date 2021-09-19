@@ -14,6 +14,7 @@ import java.net.URI
 import java.net.URISyntaxException
 import java.sql.DriverManager
 import java.sql.SQLException
+import javax.sql.DataSource
 
 
 fun main(args: Array<String>): Unit =
@@ -39,13 +40,6 @@ fun Application.module() {
 
 @Throws(URISyntaxException::class, SQLException::class)
 private fun getConnection(): Database {
-    val dbUri = URI(System.getenv("DATABASE_URL"))
-    val username = dbUri.userInfo.split(":").toTypedArray()[0]
-    val password = dbUri.userInfo.split(":").toTypedArray()[1]
-    val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path.toString()
-    DriverManager.getConnection(dbUrl, username, password)
-    return Database.connect(
-        dbUrl, driver = "com.impossibl.postgres.jdbc.PGDriver",
-        user = username, password = password
-    )
+    val dbUrl = System.getenv("JDBC_DATABASE_URL")
+    return Database.connect(DriverManager.getConnection(dbUrl) as DataSource)
 }
