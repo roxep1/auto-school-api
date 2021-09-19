@@ -41,5 +41,5 @@ fun Application.module() {
 @Throws(URISyntaxException::class, SQLException::class)
 private fun getConnection(): Database {
     val dbUrl = System.getenv("JDBC_DATABASE_URL")
-    return Database.connect(dbUrl)
+    return Database.connect(DriverManager.getConnection(dbUrl) as DataSource)
 }
