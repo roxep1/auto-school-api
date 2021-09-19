@@ -41,5 +41,5 @@ fun Application.module() {
 @Throws(URISyntaxException::class, SQLException::class)
 private fun getConnection(): Database {
     val dbUrl = System.getenv("JDBC_DATABASE_URL")
-    return Database.connect(dbUrl, driver = "com.impossibl.postgres.jdbc.PGDriver")
+    return Database.connect(dbUrl)
 }
