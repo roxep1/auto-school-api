@@ -24,12 +24,12 @@ fun Application.module() {
     configureSerialization()
 
     routing {
-        var lesson: LessonType? = null
+        var empl: Employee? = null
         transaction {
-            lesson = LessonType[1]
+            empl = Employee.all().elementAt(0)
         }
         get("/") {
-            call.respond(lesson!!)
+            call.respond(empl!!)
         }
 
     }
