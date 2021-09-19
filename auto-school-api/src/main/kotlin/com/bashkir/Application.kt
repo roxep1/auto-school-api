@@ -42,7 +42,7 @@ private fun getConnection(): Database {
     val dbUri = URI(System.getenv("DATABASE_URL"))
     val username = dbUri.userInfo.split(":").toTypedArray()[0]
     val password = dbUri.userInfo.split(":").toTypedArray()[1]
-    val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path.toString() + "?sslmode=require"
+    val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + "/postgresql-closed-60430" + "?sslmode=require"
     DriverManager.getConnection(dbUrl, username, password)
     return Database.connect(
         dbUrl, driver = "com.impossibl.postgres.jdbc.PGDriver",
