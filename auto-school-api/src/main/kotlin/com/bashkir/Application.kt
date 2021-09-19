@@ -2,6 +2,7 @@ package com.bashkir
 
 import com.bashkir.models.Employee
 import com.bashkir.models.LessonType
+import com.bashkir.models.Man
 import com.bashkir.plugins.configureRouting
 import com.bashkir.plugins.configureSerialization
 import io.ktor.application.*
@@ -24,12 +25,12 @@ fun Application.module() {
     configureSerialization()
 
     routing {
-        var empl: Employee? = null
+        var man: Man? = null
         transaction {
-            empl = Employee.all().elementAt(0)
+            man = Man.all().elementAt(0)
         }
         get("/") {
-            call.respond(empl!!)
+            call.respond(man!!)
         }
 
     }
