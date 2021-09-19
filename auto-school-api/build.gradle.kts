@@ -35,7 +35,7 @@ dependencies {
 
 //    implementation("com.zaxxer:HikariCP:5.0.0")
 
-    implementation("org.postgresql:postgresql:42.2.2")
+    implementation("com.impossibl.pgjdbc-ng", "pgjdbc-ng", "0.8.3")
 }
 
 tasks.create("stage") {
