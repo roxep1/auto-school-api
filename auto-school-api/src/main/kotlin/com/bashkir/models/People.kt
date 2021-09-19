@@ -1,7 +1,7 @@
 package com.bashkir.models
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.Column
@@ -28,12 +28,12 @@ class Man(id: EntityID<String>): Entity<String>(id) {
 
 @Serializable
 data class checkMan(
-    @Contextual val man: Man
+     @Transient() val man: Man? = null
 ){
-    val name = man.name
-    val lastName = man.lastName
-    val middleName = man.middleName
-    val email = man.email
-    val login = man.login
-    val password = man.password
+    val name = man?.name
+    val lastName = man?.lastName
+    val middleName = man?.middleName
+    val email = man?.email
+    val login = man?.login
+    val password = man?.password
 }

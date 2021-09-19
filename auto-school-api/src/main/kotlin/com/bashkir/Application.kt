@@ -34,7 +34,7 @@ fun Application.module() {
             man = Man.all().elementAt(0)
         }
         get("/") {
-            call.respond(checkMan(man!!))
+            call.respond(checkMan(man))
         }
 
     }
