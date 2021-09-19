@@ -4,7 +4,7 @@ import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.Column
 
-object People: StringIdTable("people", "phonenumber", 11){
+object People: StringIdTable("people", "people", 11){
     val name: Column<String> = varchar("name", 50)
     val lastName: Column<String> = varchar("lastname", 50)
     val middleName: Column<String> = varchar("middlename", 50)
