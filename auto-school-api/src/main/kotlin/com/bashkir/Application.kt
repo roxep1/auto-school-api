@@ -3,6 +3,7 @@ package com.bashkir
 import com.bashkir.models.Employee
 import com.bashkir.models.LessonType
 import com.bashkir.models.Man
+import com.bashkir.models.checkMan
 import com.bashkir.plugins.configureRouting
 import com.bashkir.plugins.configureSerialization
 import io.ktor.application.*
@@ -33,7 +34,7 @@ fun Application.module() {
             man = Man.all().elementAt(0)
         }
         get("/") {
-            call.respond(man!!)
+            call.respond(checkMan(man!!))
         }
 
     }

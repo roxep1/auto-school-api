@@ -1,5 +1,7 @@
 package com.bashkir.models
 
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.Column
@@ -12,6 +14,7 @@ object People: StringIdTable("people", "phonenumber", 11){
     val login: Column<String> = varchar("login", 20)
     val password: Column<String> = varchar("password", 20)
 }
+
 class Man(id: EntityID<String>): Entity<String>(id) {
     companion object : StringEntityClass<Man>(People)
 
@@ -21,4 +24,16 @@ class Man(id: EntityID<String>): Entity<String>(id) {
     var email by People.email
     var login by People.login
     var password by People.password
+}
+
+@Serializable
+data class checkMan(
+    @Contextual val man: Man
+){
+    val name = man.name
+    val lastName = man.lastName
+    val middleName = man.middleName
+    val email = man.email
+    val login = man.login
+    val password = man.password
 }
