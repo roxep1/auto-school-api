@@ -15,6 +15,7 @@ object People: StringIdTable("people", "phonenumber", 11){
     val password: Column<String> = varchar("password", 20)
 }
 
+//@Serializable
 class Man(id: EntityID<String>): Entity<String>(id) {
     companion object : StringEntityClass<Man>(People)
 
@@ -28,8 +29,9 @@ class Man(id: EntityID<String>): Entity<String>(id) {
 
 @Serializable
 data class checkMan(
-     @Transient() val man: Man? = null
+     @Transient val man: Man? = null
 ){
+    val phoneNum = man?.id?.value
     val name = man?.name
     val lastName = man?.lastName
     val middleName = man?.middleName

@@ -9,7 +9,10 @@ import com.bashkir.plugins.configureSerialization
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import org.jetbrains.exposed.sql.CustomFunction
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.VarCharColumnType
+import org.jetbrains.exposed.sql.intParam
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.net.URI
 import java.net.URISyntaxException
@@ -30,8 +33,12 @@ fun Application.module() {
 
     routing {
         var man: Man? = null
+//        var name: String = ""
         transaction {
-            man = Man.all().elementAt(0)
+            exec("call update_person('7964561924')")
+//            name = CustomFunction<String>("get_emp_name", VarCharColumnType(), intParam(0) )
+            man =
+                Man.all().elementAt(0)
         }
         get("/") {
             call.respond(checkMan(man))
