@@ -32,7 +32,7 @@ class People(id: EntityID<String>): Entity<String>(id) {
 
 @Serializable
 data class PeopleModel(
-     @Transient val man: People? = null
+     @Transient private val man: People? = null
 ){
     val phoneNum = man?.id?.value
     val name = man?.name
