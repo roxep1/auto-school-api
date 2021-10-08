@@ -28,10 +28,8 @@ fun Application.module() {
 
     routing {
         var man: People? = null
-//        var name: String = ""
         transaction {
-            exec("call update_person('7964561924')")
-//            name = CustomFunction<String>("get_emp_name", VarCharColumnType(), intParam(0) )
+//            exec("call update_person('7964561924')")
             man =
                 People.all().elementAt(0)
         }
