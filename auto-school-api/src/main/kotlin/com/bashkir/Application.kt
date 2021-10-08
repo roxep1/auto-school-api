@@ -36,7 +36,6 @@ fun Application.module() {
         get("/") {
             call.respond(man?.toModel() ?:"Error")
         }
-        People.new {  }
     }
 }
 
