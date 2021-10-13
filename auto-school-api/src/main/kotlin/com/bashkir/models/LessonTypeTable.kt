@@ -1,5 +1,6 @@
 package com.bashkir.models
 
+import com.bashkir.EntityWithModel
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.jetbrains.exposed.dao.IntEntity
@@ -12,23 +13,31 @@ object LessonTypeTable: IntIdTable( "lessontype", "typeid"){
     val name: Column<String> = varchar("name", 18)
     val duration: Column<Int> = integer("duration")
     val onePlace: Column<Boolean> = bool("oneplace")
+    fun go(){
+
+    }
 }
 
-class LessonType(id: EntityID<Int>): IntEntity(id) {
+class LessonType(id: EntityID<Int>): IntEntity(id), EntityWithModel<LessonType.Model> {
     companion object : IntEntityClass<LessonType>(LessonTypeTable)
 
     var name by LessonTypeTable.name
     var duration by LessonTypeTable.duration
     var onePlace by LessonTypeTable.onePlace
 
-    fun toModel(): LessonTypeModel = LessonTypeModel(this)
+
+
+    override fun toModel(): Model  = Model(this)
+
+    @Serializable
+    data class Model(@Transient private val type: LessonType? = null) {
+
+        val id = type?.id?.value
+        val name = type?.name
+        val duration = type?.duration
+        val onePlace = type?.onePlace
+    }
 }
 
-@Serializable
-data class LessonTypeModel(@Transient private val type: LessonType? = null) {
 
-    val id = type?.id?.value
-    val name = type?.name
-    val duration = type?.duration
-    val onePlace = type?.onePlace
-}
+

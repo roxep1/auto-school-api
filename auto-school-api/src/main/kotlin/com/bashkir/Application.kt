@@ -6,6 +6,9 @@ import com.bashkir.plugins.configureSerialization
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import io.ktor.utils.io.*
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -56,4 +59,8 @@ class PGEnum<T : Enum<T>>(enumTypeName: String, enumValue: T?) : PGobject() {
         value = enumValue?.name
         type = enumTypeName
     }
+}
+
+interface EntityWithModel<T>{
+    fun toModel(): T
 }

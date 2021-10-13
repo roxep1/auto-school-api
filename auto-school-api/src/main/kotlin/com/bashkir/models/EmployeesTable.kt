@@ -1,5 +1,6 @@
 package com.bashkir.models
 
+import com.bashkir.EntityWithModel
 import com.bashkir.StringEntityClass
 import com.bashkir.StringIdTable
 import kotlinx.serialization.Serializable
@@ -18,7 +19,7 @@ object EmployeesTable : StringIdTable("employees", "phonenumber", 11) {
     val dateOfDismissal: Column<LocalDate> = date("date")
 }
 
-class Employee(id: EntityID<String>) : Entity<String>(id) {
+class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Employee.Model> {
     companion object : StringEntityClass<Employee>(EmployeesTable) {
         fun new(initEmp: Employee.() -> Unit, initMan: People.() -> Unit): Employee {
             val man = People.new(initMan)
@@ -32,14 +33,14 @@ class Employee(id: EntityID<String>) : Entity<String>(id) {
     var positionName by EmployeesTable.positionName
     var dateOfDismissal by EmployeesTable.dateOfDismissal
 
-    fun toModel(): EmployeeModel = EmployeeModel(this)
-}
+    override fun toModel() = Model(this)
 
-@Serializable
-data class EmployeeModel(@Transient private val emp: Employee? = null) {
-    val phoneNumber = emp?.phoneNumber?.id?.value
-    val salary = emp?.salary
-    val coef = emp?.coef
-    val positionName = emp?.positionName
-    val dateOfDismissal = emp?.dateOfDismissal.toString()
+    @Serializable
+    data class Model(@Transient private val emp: Employee? = null) {
+        val phoneNumber = emp?.phoneNumber?.id?.value
+        val salary = emp?.salary
+        val coef = emp?.coef
+        val positionName = emp?.positionName
+        val dateOfDismissal = emp?.dateOfDismissal.toString()
+    }
 }
