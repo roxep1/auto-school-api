@@ -30,14 +30,11 @@ fun Application.module() {
     configureSerialization()
 
     routing {
-        var man: People? = null
-        transaction {
 //            exec("call update_person('7964561924')")
-            man =
-                People.all().elementAt(0)
-        }
         get("/") {
-            call.respond(man?.toModel() ?:"Error")
+            call.respond(transaction {
+                Employee.all().elementAt(0)
+            }.toModel())
         }
     }
 }
