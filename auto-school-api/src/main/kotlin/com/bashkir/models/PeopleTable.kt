@@ -11,8 +11,8 @@ import org.jetbrains.exposed.sql.Column
 object PeopleTable: StringIdTable("people", "phonenumber", 11) {
     val name: Column<String> = varchar("name", 50)
     val lastName: Column<String> = varchar("lastname", 50)
-    val middleName: Column<String> = varchar("middlename", 50)
-    val email: Column<String> = varchar("email", 100)
+    val middleName = varchar("middlename", 50).nullable()
+    val email = varchar("email", 100).nullable()
     val login: Column<String> = varchar("login", 20)
     val password: Column<String> = varchar("password", 20)
 }

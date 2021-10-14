@@ -26,6 +26,7 @@ class Students(id: EntityID<String>): Entity<String>(id), EntityWithModel<Studen
 
     var graduation by StudentsTable.graduation
     var tariff by Tariff referencedOn StudentsTable.tariff
+    var lessons by Lessons via SingUpsTable
 
     @Serializable
     data class Model(@Transient val model: Students? = null){

@@ -20,6 +20,7 @@ class Lessons(id: EntityID<Int>) : IntEntity(id) {
     var date by LessonsTable.date
     var type by ExamTypes referencedOn LessonsTable.type
     var phoneNumber by Employee referencedOn LessonsTable.phoneNumber
+    var students by Students via SingUpsTable
 
     fun toModel(): LessonsModel = LessonsModel(this)
 }
