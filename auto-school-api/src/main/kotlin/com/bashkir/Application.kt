@@ -24,7 +24,7 @@ fun Application.module() {
             val emp = transaction {
                 Employee.all().elementAt(0)
             }
-            call.respond(emp)
+            call.respond(emp.toModel())
         }
     }
 }
