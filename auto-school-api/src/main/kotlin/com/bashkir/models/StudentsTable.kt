@@ -2,15 +2,15 @@ package com.bashkir.models
 
 import com.bashkir.EntityWithModel
 import com.bashkir.StringEntityClass
-import com.bashkir.StringIdTable
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.`java-time`.date
+import org.jetbrains.exposed.sql.javatime.date
 
-object StudentsTable : StringIdTable("students", "phonenumber", 11) {
+object StudentsTable : IdTable<String>("students") {
     override val id: Column<EntityID<String>> = reference("phonenumber", PeopleTable)
     val graduation = date("graduationdate")
     val tariff = reference("tariffid", TariffTable)

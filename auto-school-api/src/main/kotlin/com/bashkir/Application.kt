@@ -22,7 +22,7 @@ fun Application.module() {
 //            exec("call update_person('7964561924')")
         get("/") {
             val emp = transaction {
-                Employee.all().elementAt(0).toModel()
+                Employee.all().elementAt(0)
             }
             call.respond(emp)
         }

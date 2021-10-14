@@ -7,11 +7,12 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.EntityID
+import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.`java-time`.date
+import org.jetbrains.exposed.sql.javatime.date
 import java.time.LocalDate
 
-object EmployeesTable : StringIdTable("employees", "phonenumber", 11) {
+object EmployeesTable : IdTable<String>("employees",) {
     override val id: Column<EntityID<String>> = reference("phonenumber", PeopleTable)
     val salary: Column<Float> = float("salary")
     val coef: Column<Int> = integer("coef")

@@ -12,12 +12,11 @@ import org.postgresql.util.PGobject
 import java.sql.Connection
 import java.sql.DriverManager
 
-fun connectDatabase() {
+fun connectDatabase() =
     Database.connect(::getConnection)
-}
 
-fun Application.configureKoin(){
-    install(Koin){
+fun Application.configureKoin() {
+    install(Koin) {
         modules()
     }
 }
@@ -27,9 +26,10 @@ private fun getConnection(): Connection {
     return DriverManager.getConnection(dbUrl)
 }
 
-abstract class StringEntityClass<out E: Entity<String>>(table: IdTable<String>, entityType: Class<E>? = null) : EntityClass<String, E>(table, entityType)
+abstract class StringEntityClass<out E : Entity<String>>(table: IdTable<String>, entityType: Class<E>? = null) :
+    EntityClass<String, E>(table, entityType)
 
-open class StringIdTable(name: String , columnName: String , columnLength: Int ) : IdTable<String>(name) {
+open class StringIdTable(name: String, columnName: String, columnLength: Int) : IdTable<String>(name) {
     override val id: Column<EntityID<String>> = varchar(columnName, columnLength).entityId()
     override val primaryKey by lazy { super.primaryKey ?: PrimaryKey(id) }
 }
@@ -41,6 +41,6 @@ class PGEnum<T : Enum<T>>(enumTypeName: String, enumValue: T?) : PGobject() {
     }
 }
 
-interface EntityWithModel<T>{
+interface EntityWithModel<T> {
     fun toModel(): T
 }
