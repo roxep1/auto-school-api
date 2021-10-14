@@ -20,12 +20,11 @@ fun Application.module() {
 
     routing {
 //            exec("call update_person('7964561924')")
-        val emp = transaction {
-            Employee.all().elementAt(0)
-        }
         get("/") {
 
-            call.respond(emp.toModel())
+            call.respond(transaction {
+                Employee.all().elementAt(0).toModel()
+            })
         }
     }
 }
