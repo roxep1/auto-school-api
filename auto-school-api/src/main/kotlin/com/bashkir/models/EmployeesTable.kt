@@ -17,7 +17,7 @@ object EmployeesTable : IdTable<String>("employees",) {
     val salary: Column<Float> = float("salary")
     val coef: Column<Int> = integer("coef")
     val positionName: Column<String> = text("positionname")
-    val dateOfDismissal: Column<LocalDate> = date("date")
+    val dateOfDismissal: Column<LocalDate> = date("dateofdismissal")
 }
 
 class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Employee.Model> {
