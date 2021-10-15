@@ -38,7 +38,7 @@ class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Emplo
 
     @Serializable
     data class Model(@Transient private val emp: Employee? = null) {
-        val phoneNumber = emp!!.phoneNumber.toModel()
+        val peopleInfo = emp!!.phoneNumber.toModel()
         val salary = emp!!.salary
         val coef = emp!!.coef
         val positionName = emp!!.positionName
