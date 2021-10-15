@@ -8,6 +8,7 @@ import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Database
 import org.koin.ktor.ext.Koin
+import org.koin.logger.slf4jLogger
 import org.postgresql.util.PGobject
 import java.sql.Connection
 import java.sql.DriverManager
@@ -17,7 +18,8 @@ fun connectDatabase() =
 
 fun Application.configureKoin() {
     install(Koin) {
-        modules()
+        slf4jLogger()
+        modules(servicesModule)
     }
 }
 

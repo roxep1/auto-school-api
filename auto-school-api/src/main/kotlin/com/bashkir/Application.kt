@@ -3,6 +3,7 @@ package com.bashkir
 import com.bashkir.models.*
 import com.bashkir.plugins.configureRouting
 import com.bashkir.plugins.configureSerialization
+import com.bashkir.routings.employeesRouting
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -17,14 +18,17 @@ fun Application.module() {
     connectDatabase()
     configureRouting()
     configureSerialization()
+    configureKoin()
 
-    routing {
+    employeesRouting()
+
+//    routing {
 //            exec("call update_person('7964561924')")
-        get("/") {
-
-            call.respond(transaction {
-                Employee.all().elementAt(0).toModel()
-            })
-        }
-    }
+//        get("/") {
+//
+//            call.respond(transaction {
+//                Employee.all().elementAt(0).toModel()
+//            })
+//        }
+//    }
 }
