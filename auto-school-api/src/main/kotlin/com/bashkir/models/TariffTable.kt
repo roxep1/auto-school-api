@@ -25,9 +25,9 @@ class Tariff(id: EntityID<Int>) : IntEntity(id), EntityWithModel<Tariff.Model>{
 
     @Serializable
     data class Model(@Transient val model: Tariff? = null) {
-        val id = model?.id?.value
-        val cost = model?.cost
-        val name = model?.name
+        val id = model!!.id.value
+        val cost = model!!.cost
+        val name = model!!.name
     }
 
     override fun toModel(): Model = Model(this)

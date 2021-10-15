@@ -1,5 +1,6 @@
 package com.bashkir.models
 
+import com.bashkir.EntityWithModel
 import com.bashkir.PGEnum
 import com.bashkir.StringEntityClass
 import com.bashkir.StringIdTable
@@ -15,16 +16,16 @@ object PositionTable : StringIdTable("position", "positionName", 18) {
         customEnumeration("codename", "Code", { value -> Code.valueOf(value as String) }, { PGEnum("Code", it) })
 }
 
-class Position(id: EntityID<String>): Entity<String>(id){
+class Position(id: EntityID<String>): Entity<String>(id), EntityWithModel<Position.Model>{
     companion object: StringEntityClass<Position>(PositionTable)
 
     var code by PositionTable.code
 
-    fun toModel(): PositionModel = PositionModel(this)
-}
+    override fun toModel(): Model = Model(this)
 
-@Serializable
-data class PositionModel(@Transient private val pos: Position? = null) {
-    val position = pos?.id?.value
-    val code = pos?.code
+    @Serializable
+    data class Model(@Transient private val pos: Position? = null) {
+        val position = pos!!.id.value
+        val code = pos!!.code
+    }
 }

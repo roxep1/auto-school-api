@@ -1,5 +1,6 @@
 package com.bashkir.models
 
+import com.bashkir.EntityWithModel
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.jetbrains.exposed.dao.IntEntity
@@ -14,7 +15,7 @@ object LessonsTable : IntIdTable("lessons", "lessonid") {
     val phoneNumber = reference("phonenumber", EmployeesTable)
 }
 
-class Lessons(id: EntityID<Int>) : IntEntity(id) {
+class Lessons(id: EntityID<Int>) : IntEntity(id), EntityWithModel<Lessons.Model> {
     companion object : IntEntityClass<Lessons>(LessonsTable)
 
     var date by LessonsTable.date
@@ -22,13 +23,14 @@ class Lessons(id: EntityID<Int>) : IntEntity(id) {
     var phoneNumber by Employee referencedOn LessonsTable.phoneNumber
     var students by Students via SingUpsTable
 
-    fun toModel(): LessonsModel = LessonsModel(this)
-}
+    override fun toModel(): Model = Model(this)
 
-@Serializable
-data class LessonsModel(@Transient val les: Lessons? = null) {
-    val id = les?.id?.value
-    val date = les?.date.toString()
-    val type = les?.type?.id?.value
-    val phoneNumber = les?.phoneNumber?.id?.value
+    @Serializable
+    data class Model(@Transient val model: Lessons? = null) {
+        val id = model!!.id.value
+        val date = model!!.date.toString()
+        val type = model!!.type.id.value
+        val phoneNumber = model!!.phoneNumber.id.value
+        val students = model!!.students.map { it.toModel() }
+    }
 }

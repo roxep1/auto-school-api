@@ -1,5 +1,6 @@
 package com.bashkir.models
 
+import com.bashkir.EntityWithModel
 import com.bashkir.StringEntityClass
 import com.bashkir.StringIdTable
 import kotlinx.serialization.Serializable
@@ -17,7 +18,7 @@ object PeopleTable: StringIdTable("people", "phonenumber", 11) {
     val password: Column<String> = varchar("password", 20)
 }
 
-class People(id: EntityID<String>): Entity<String>(id) {
+class People(id: EntityID<String>): Entity<String>(id), EntityWithModel<People.Model> {
     companion object : StringEntityClass<People>(PeopleTable)
 
     var name by PeopleTable.name
@@ -27,18 +28,18 @@ class People(id: EntityID<String>): Entity<String>(id) {
     var login by PeopleTable.login
     var password by PeopleTable.password
 
-    fun toModel() : PeopleModel = PeopleModel(this)
-}
+    override fun toModel() : Model = Model(this)
 
-@Serializable
-data class PeopleModel(
-     @Transient private val man: People? = null
-){
-    val phoneNum = man?.id?.value
-    val name = man?.name
-    val lastName = man?.lastName
-    val middleName = man?.middleName
-    val email = man?.email
-    val login = man?.login
-    val password = man?.password
+    @Serializable
+    data class Model(
+        @Transient private val man: People? = null
+    ){
+        val phoneNumber = man!!.id.value
+        val name = man!!.name
+        val lastName = man!!.lastName
+        val middleName = man?.middleName
+        val email = man?.email
+        val login = man!!.login
+        val password = man!!.password
+    }
 }

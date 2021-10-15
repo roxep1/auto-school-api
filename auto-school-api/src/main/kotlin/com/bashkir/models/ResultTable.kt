@@ -8,7 +8,7 @@ import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Column
-import org.jetbrains.exposed.sql.`java-time`.date
+import org.jetbrains.exposed.sql.javatime.date
 import java.time.LocalDate
 
 object ResultsTable: IntIdTable("results", "resultId") {
@@ -18,7 +18,7 @@ object ResultsTable: IntIdTable("results", "resultId") {
     val result: Column<String> = varchar("result", 18)
 }
 
-class Results(id: EntityID<Int>): IntEntity(id), EntityWithModel<ResultModel>{
+class Results(id: EntityID<Int>): IntEntity(id), EntityWithModel<Results.Model>{
     companion object : IntEntityClass<Results>(ResultsTable)
 
     var phoneNumber by Students referencedOn ResultsTable.phoneNumber
@@ -26,15 +26,15 @@ class Results(id: EntityID<Int>): IntEntity(id), EntityWithModel<ResultModel>{
     var date by ResultsTable.date
     var result by ResultsTable.result
 
-    override fun toModel(): ResultModel = ResultModel(this)
-}
+    override fun toModel(): Model = Model(this)
 
-@Serializable
-data class ResultModel constructor(@Transient private val results: Results? = null){
+    @Serializable
+    data class Model (@Transient private val results: Results? = null){
 
-    val id = results?.id?.value
-    val phoneNumber = results?.phoneNumber?.id?.value
-    val examType = results?.examType?.id?.value
-    val date = results?.date?.toString()
-    val result = results?.result
+        val id = results!!.id.value
+        val phoneNumber = results!!.phoneNumber.id.value
+        val examType = results!!.examType.id.value
+        val date = results!!.date.toString()
+        val result = results!!.result
+    }
 }

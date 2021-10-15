@@ -13,9 +13,6 @@ object LessonTypeTable: IntIdTable( "lessontype", "typeid"){
     val name: Column<String> = varchar("name", 18)
     val duration: Column<Int> = integer("duration")
     val onePlace: Column<Boolean> = bool("oneplace")
-    fun go(){
-
-    }
 }
 
 class LessonType(id: EntityID<Int>): IntEntity(id), EntityWithModel<LessonType.Model> {
@@ -32,10 +29,10 @@ class LessonType(id: EntityID<Int>): IntEntity(id), EntityWithModel<LessonType.M
     @Serializable
     data class Model(@Transient private val type: LessonType? = null) {
 
-        val id = type?.id?.value
-        val name = type?.name
-        val duration = type?.duration
-        val onePlace = type?.onePlace
+        val id = type!!.id.value
+        val name = type!!.name
+        val duration = type!!.duration
+        val onePlace = type!!.onePlace
     }
 }
 

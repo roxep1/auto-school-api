@@ -30,9 +30,10 @@ class Students(id: EntityID<String>): Entity<String>(id), EntityWithModel<Studen
 
     @Serializable
     data class Model(@Transient val model: Students? = null){
-        val id = model?.id?.value
-        val graduation = model?.graduation.toString()
-        val tariff = model?.tariff?.name
+        val id = model!!.id.value
+        val graduation = model!!.graduation.toString()
+        val tariff = model!!.tariff.name
+        val lessons = model!!.lessons.map { it.toModel() }
     }
 
     override fun toModel(): Model = Model(this)
