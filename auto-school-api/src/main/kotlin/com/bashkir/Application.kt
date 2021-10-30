@@ -27,7 +27,7 @@ fun Application.module() {
 
     routing {
         authenticate {
-            this@routing.employeesRouting()
+            employeesRouting()
         }
     }
 
