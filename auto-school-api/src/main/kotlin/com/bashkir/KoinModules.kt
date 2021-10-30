@@ -11,6 +11,7 @@ import java.util.*
 
 private enum class JWTThings {
     Audience, Issuer, Secret, Realm;
+
     fun getValue(environment: ApplicationEnvironment): String =
         environment.config.property("jwt.${name.lowercase()}").getString()
 }
@@ -28,9 +29,7 @@ val mainModule = module {
             .sign(Algorithm.HMAC256(JWTThings.Secret.getValue(environment)))
     }
 
-    factory(named("realm")) { (environment: ApplicationEnvironment) ->
-        JWTThings.Realm.getValue(environment)
-    }
+    factory(named("realm")) { "auto-school-api" }
 
     factory { (environment: ApplicationEnvironment) ->
         JWT
