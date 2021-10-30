@@ -6,6 +6,7 @@ import com.bashkir.plugins.configureRouting
 import com.bashkir.plugins.configureSerialization
 import com.bashkir.routings.employeesRouting
 import io.ktor.application.*
+import io.ktor.auth.*
 import io.ktor.locations.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -24,7 +25,11 @@ fun Application.module() {
     configureAuthentication()
     configureSerialization()
 
-    employeesRouting()
+    routing {
+        authenticate {
+            employeesRouting()
+        }
+    }
 
 //    routing {
 //            exec("call update_person('7964561924')")

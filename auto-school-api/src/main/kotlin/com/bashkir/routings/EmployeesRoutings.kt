@@ -12,10 +12,8 @@ fun Application.employeesRouting(){
     val service by inject<EmployeesService>()
 
     routing{
-        authenticate {
             get("/"){
                 call.respond(service.getFirst())
             }
-        }
     }
 }
