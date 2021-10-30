@@ -12,7 +12,7 @@ import java.util.*
 private enum class JWTThings {
     Audience, Issuer, Secret, Realm;
     fun getValue(environment: ApplicationEnvironment): String =
-        environment.config.property("jwt.{${name.lowercase()}}").getString()
+        environment.config.property("jwt.${name.lowercase()}").getString()
 }
 
 val mainModule = module {
