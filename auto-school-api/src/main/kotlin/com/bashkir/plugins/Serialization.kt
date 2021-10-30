@@ -7,8 +7,8 @@ import io.ktor.response.*
 import io.ktor.request.*
 import io.ktor.routing.*
 
-fun Application.configureSerialization() {
+fun Application.configureSerialization() =
     install(ContentNegotiation) {
         json()
     }
-}
+

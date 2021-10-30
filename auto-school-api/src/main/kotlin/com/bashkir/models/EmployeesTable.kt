@@ -2,7 +2,6 @@ package com.bashkir.models
 
 import com.bashkir.EntityWithModel
 import com.bashkir.StringEntityClass
-import com.bashkir.StringIdTable
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import org.jetbrains.exposed.dao.Entity
@@ -10,7 +9,6 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.javatime.date
-import java.time.LocalDate
 
 object EmployeesTable : IdTable<String>("employees",) {
     override val id: Column<EntityID<String>> = reference("phonenumber", PeopleTable)
@@ -28,7 +26,7 @@ class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Emplo
         }
     }
 
-    var phoneNumber by People referencedOn EmployeesTable.id
+    var peopleInfo by People referencedOn EmployeesTable.id
     var salary by EmployeesTable.salary
     var coef by EmployeesTable.coef
     var positionName by EmployeesTable.positionName
@@ -38,7 +36,7 @@ class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Emplo
 
     @Serializable
     data class Model(@Transient private val emp: Employee? = null) {
-        val peopleInfo = emp!!.phoneNumber.toModel()
+        val peopleInfo = emp!!.peopleInfo.toModel()
         val salary = emp!!.salary
         val coef = emp!!.coef
         val positionName = emp!!.positionName

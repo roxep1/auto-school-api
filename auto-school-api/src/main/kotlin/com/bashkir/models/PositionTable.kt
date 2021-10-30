@@ -12,20 +12,17 @@ import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.Column
 
 object PositionTable : StringIdTable("position", "positionName", 18) {
-    val code: Column<Code> =
-        customEnumeration("codename", "Code", { value -> Code.valueOf(value as String) }, { PGEnum("Code", it) })
+
 }
 
 class Position(id: EntityID<String>): Entity<String>(id), EntityWithModel<Position.Model>{
     companion object: StringEntityClass<Position>(PositionTable)
 
-    var code by PositionTable.code
 
     override fun toModel(): Model = Model(this)
 
     @Serializable
     data class Model(@Transient private val pos: Position? = null) {
         val position = pos!!.id.value
-        val code = pos!!.code
     }
 }

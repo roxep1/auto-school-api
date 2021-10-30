@@ -35,8 +35,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 
-
-
     //Connect to postgreSQL
     implementation("org.postgresql:postgresql:42.2.24.jre7")
 
@@ -44,6 +42,11 @@ dependencies {
     implementation("io.insert-koin:koin-ktor:$koinVersion")
     // SLF4J Logger
     implementation("io.insert-koin:koin-logger-slf4j:$koinVersion")
+
+    // Ktor auth
+    implementation("io.ktor:ktor-auth:$ktorVersion")
+    implementation("io.ktor:ktor-auth-jwt:$ktorVersion")
+
 }
 
 tasks.create("stage") {

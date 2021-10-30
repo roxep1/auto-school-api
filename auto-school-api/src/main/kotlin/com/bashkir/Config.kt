@@ -19,7 +19,7 @@ fun connectDatabase() =
 fun Application.configureKoin() {
     install(Koin) {
         slf4jLogger()
-        modules(servicesModule)
+        modules(mainModule)
     }
 }
 

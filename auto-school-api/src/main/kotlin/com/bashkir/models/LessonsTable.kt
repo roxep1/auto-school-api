@@ -11,7 +11,7 @@ import org.jetbrains.exposed.sql.javatime.timestamp
 
 object LessonsTable : IntIdTable("lessons", "lessonid") {
     val date = timestamp("dateof")
-    val type = reference("typeid", ExamTypesTable)
+    val type = reference("typeid", LessonTypeTable)
     val phoneNumber = reference("phonenumber", EmployeesTable)
 }
 
@@ -19,7 +19,7 @@ class Lessons(id: EntityID<Int>) : IntEntity(id), EntityWithModel<Lessons.Model>
     companion object : IntEntityClass<Lessons>(LessonsTable)
 
     var date by LessonsTable.date
-    var type by ExamTypes referencedOn LessonsTable.type
+    var type by LessonType referencedOn LessonsTable.type
     var phoneNumber by Employee referencedOn LessonsTable.phoneNumber
     var students by Students via SingUpsTable
 
