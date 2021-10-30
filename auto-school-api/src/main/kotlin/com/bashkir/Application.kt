@@ -25,11 +25,11 @@ fun Application.module() {
     configureAuthentication()
     configureSerialization()
 
-    routing {
-        authenticate {
-            employeesRouting()
-        }
-    }
+//    routing {
+//        authenticate {
+    employeesRouting()
+//        }
+//    }
 
 //    routing {
 //            exec("call update_person('7964561924')")

@@ -8,12 +8,14 @@ import io.ktor.routing.*
 import org.koin.ktor.ext.get
 import org.koin.ktor.ext.inject
 
-fun Application.employeesRouting(){
+fun Application.employeesRouting() {
     val service by inject<EmployeesService>()
 
-    routing{
-            get("/"){
+    routing {
+        authenticate {
+            get("/") {
                 call.respond(service.getFirst())
             }
+        }
     }
 }
