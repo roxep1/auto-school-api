@@ -20,8 +20,8 @@ fun main(args: Array<String>): Unit =
 fun Application.module() {
     connectDatabase()
     configureKoin()
-    configureAuthentication()
     configureRouting()
+    configureAuthentication()
     configureSerialization()
 
     employeesRouting()
