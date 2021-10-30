@@ -30,7 +30,7 @@ fun Application.configureAuthentication() {
     install(Authentication) {
         jwt {
             realm = get(qualifier = named("realm"))// { parametersOf(environment) }
-            verifier(get<JWTVerifier>())
+            verifier(get<JWTVerifier> { parametersOf(environment) })
 
             validate { jwtCredential ->
                 if (!jwtCredential.payload.getClaim("phoneNumber").asString().isNullOrBlank())
