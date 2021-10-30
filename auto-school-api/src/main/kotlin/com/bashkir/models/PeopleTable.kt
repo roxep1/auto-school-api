@@ -19,7 +19,7 @@ object PeopleTable: StringIdTable("people", "phonenumber", 11) {
     val login: Column<String> = varchar("login", 20)
     val password: Column<String> = varchar("password", 20)
     val code: Column<Code> =
-        customEnumeration("codename", "Code", { value -> Code.valueOf(value as String) }, { PGEnum("Code", it) })
+        customEnumeration("code", "Code", { value -> Code.valueOf(value as String) }, { PGEnum("Code", it) })
 }
 
 class People(id: EntityID<String>): Entity<String>(id), EntityWithModel<People.Model> {
