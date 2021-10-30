@@ -29,7 +29,7 @@ fun Application.configureAuthentication() {
 
     install(Authentication) {
         jwt {
-            realm = get(qualifier = named("realm")) { parametersOf(environment) }
+            realm = get(qualifier = named("realm"))// { parametersOf(environment) }
             verifier(get<JWTVerifier>())
 
             validate { jwtCredential ->
