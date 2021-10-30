@@ -29,14 +29,14 @@ val mainModule = module {
             .sign(Algorithm.HMAC256(JWTThings.Secret.getValue(environment)))
     }
 
-    factory(named("realm")) { "auto-school-api" }
+    single(named("realm")) { (environment: ApplicationEnvironment) ->
+        JWTThings.Realm.getValue(environment)
+    }
 
-    factory { (environment: ApplicationEnvironment) ->
-        JWT
-            .require(Algorithm.HMAC256(JWTThings.Secret.getValue(environment)))
+    single { (environment: ApplicationEnvironment) ->
+        JWT.require(Algorithm.HMAC256(JWTThings.Secret.getValue(environment)))
             .withAudience(JWTThings.Audience.getValue(environment))
             .withIssuer(JWTThings.Issuer.getValue(environment))
             .build()
     }
-
 }
