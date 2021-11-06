@@ -40,9 +40,11 @@ fun Application.configureAuthentication() {
 
     routing {
         post("/login") {
+            val password = call.request.queryParameters["password"]
+            val login = call.request.queryParameters["login"]
             val user = peopleService.login(
-                call.request.queryParameters["login"] ?: "",
-                call.request.queryParameters["password"] ?: ""
+                login ?: "",
+                password ?: ""
             )
             if (user != null) {
                 val token: String by this@routing.inject(qualifier = named("token")) {
@@ -52,7 +54,7 @@ fun Application.configureAuthentication() {
                     )
                 }
                 call.respond(hashMapOf("token" to token, "user" to user))
-            } else call.respondText("Error: no user", status = HttpStatusCode.NotFound)
+            } else call.respondText("Error: no user ", status = HttpStatusCode.NotFound)
         }
     }
 }
