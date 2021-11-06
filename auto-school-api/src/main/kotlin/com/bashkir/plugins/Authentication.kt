@@ -54,7 +54,7 @@ fun Application.configureAuthentication() {
                     )
                 }
                 call.respond(hashMapOf("token" to token, "user" to user))
-            } else call.respondText("Error: no user ", status = HttpStatusCode.NotFound)
+            } else call.respondText("Error: no user with $login and $password", status = HttpStatusCode.NotFound)
         }
     }
 }
