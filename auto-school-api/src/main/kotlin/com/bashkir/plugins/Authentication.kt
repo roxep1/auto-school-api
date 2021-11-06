@@ -9,8 +9,6 @@ import io.ktor.application.*
 import io.ktor.auth.*
 import io.ktor.auth.jwt.*
 import io.ktor.http.*
-import io.ktor.locations.*
-import io.ktor.locations.post
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -20,10 +18,10 @@ import org.koin.ktor.ext.get
 import org.koin.ktor.ext.inject
 import java.util.*
 
-@KtorExperimentalLocationsAPI
+//@KtorExperimentalLocationsAPI
 fun Application.configureAuthentication() {
-    @Location("/login")
-    data class Credentials(val login: String, val password: String)
+//    @Location("/login")
+//    data class Credentials(val login: String, val password: String)
 
     val peopleService: PeopleService by inject()
 
@@ -41,8 +39,11 @@ fun Application.configureAuthentication() {
     }
 
     routing {
-        post<Credentials> { credentials ->
-            val user = peopleService.login(credentials.login, credentials.password)
+        post("/login") {
+            val user = peopleService.login(
+                call.request.queryParameters["login"] ?: "",
+                call.request.queryParameters["password"] ?: ""
+            )
             if (user != null) {
                 val token: String by this@routing.inject(qualifier = named("token")) {
                     parametersOf(
