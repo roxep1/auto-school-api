@@ -30,14 +30,4 @@ fun Application.module() {
             employeesRouting()
         }
     }
-
-//    routing {
-//            exec("call update_person('7964561924')")
-//        get("/") {
-//
-//            call.respond(transaction {
-//                Employee.all().elementAt(0).toModel()
-//            })
-//        }
-//    }
 }
