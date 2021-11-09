@@ -53,8 +53,8 @@ fun Application.configureAuthentication() {
                         user.phoneNumber
                     )
                 }
-                call.respond(token)
-            } else call.respondText("Error: no user with $login and $password", status = HttpStatusCode.NotFound)
+                call.respond(hashMapOf("token" to token, "isSuccess" to true))
+            } else call.respond(hashMapOf("isSuccess" to false))
         }
     }
 }
