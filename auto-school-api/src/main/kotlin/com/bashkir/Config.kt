@@ -1,6 +1,10 @@
 package com.bashkir
 
+import com.bashkir.routings.employeesRouting
+import com.bashkir.routings.studentRoutes
 import io.ktor.application.*
+import io.ktor.auth.*
+import io.ktor.routing.*
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -22,6 +26,15 @@ fun Application.configureKoin() {
         modules(mainModule)
     }
 }
+
+fun Application.authorizedRouting() =
+    routing {
+        authenticate {
+            employeesRouting()
+            studentRoutes()
+        }
+    }
+
 
 private fun getConnection(): Connection {
     val dbUrl = System.getenv("JDBC_DATABASE_URL")

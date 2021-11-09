@@ -3,6 +3,7 @@ package com.bashkir
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
 import com.bashkir.services.EmployeesService
+import com.bashkir.services.LessonsService
 import com.bashkir.services.PeopleService
 import io.ktor.application.*
 import org.koin.core.qualifier.named
@@ -19,6 +20,7 @@ private enum class JWTThings {
 val mainModule = module {
     single { EmployeesService() }
     single { PeopleService() }
+    single { LessonsService() }
 
     factory(named("token")) { (environment: ApplicationEnvironment, phoneNumber: String) ->
         JWT.create()

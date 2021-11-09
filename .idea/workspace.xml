@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5f5c7c19-d648-4040-bf67-be0e83e2c0db" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/routings/StudentRoutings.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto-school-api/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/auto-school-api/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/Application.kt" beforeDir="false" afterPath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/Application.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/Config.kt" beforeDir="false" afterPath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/Config.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/KoinModules.kt" beforeDir="false" afterPath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/KoinModules.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/services/LessonsService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/services/LessonsService.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/auto-school-api">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="20YsvmXMi19gA1w5BWdM9blxuza" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/auto-school-api/src/main/kotlin/com/bashkir/routings" />
+    <property name="project.structure.last.edited" value="Problems" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\auto-school\auto-school-api\src\main\kotlin\com\bashkir\routings" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5f5c7c19-d648-4040-bf67-be0e83e2c0db" name="Changes" comment="" />
+      <created>1636233091215</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1636233091215</updated>
+      <workItem from="1636233093322" duration="993000" />
+      <workItem from="1636278726254" duration="1458000" />
+      <workItem from="1636324616696" duration="1098000" />
+      <workItem from="1636335182181" duration="512000" />
+      <workItem from="1636376188160" duration="776000" />
+      <workItem from="1636431451006" duration="1549000" />
+      <workItem from="1636433058648" duration="260000" />
+      <workItem from="1636433433283" duration="56000" />
+      <workItem from="1636433820216" duration="1145000" />
+      <workItem from="1636434984571" duration="64000" />
+      <workItem from="1636435073001" duration="2315000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
