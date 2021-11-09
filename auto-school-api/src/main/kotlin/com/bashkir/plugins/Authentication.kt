@@ -10,6 +10,8 @@ import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.encodeToJsonElement
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import org.koin.ktor.ext.get
@@ -51,13 +53,8 @@ fun Application.configureAuthentication() {
                         user.phoneNumber
                     )
                 }
-                call.respond(@Serializable object {
-                    val token = token
-                    val isSuccess = true
-                })
-            } else call.respond(@Serializable object {
-                val isSuccess = false
-            })
+                call.respond(Json.encodeToJsonElement(hashSetOf("token" to token, "isSuccess" to true)))
+            } else call.respond(Json.encodeToJsonElement(hashSetOf("isSuccess" to true)))
         }
     }
 }
