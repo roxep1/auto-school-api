@@ -53,8 +53,8 @@ fun Application.configureAuthentication() {
                         user.phoneNumber
                     )
                 }
-                call.respond(Json.encodeToJsonElement(hashSetOf("token" to token, "isSuccess" to true)))
-            } else call.respond(Json.encodeToJsonElement(hashSetOf("isSuccess" to true)))
+                call.respond(Json.encodeToJsonElement(hashMapOf("token" to token, "isSuccess" to true)))
+            } else call.respond(Json.encodeToJsonElement(hashMapOf("isSuccess" to true)))
         }
     }
 }
