@@ -4,7 +4,9 @@ import com.bashkir.routings.employeesRouting
 import com.bashkir.routings.studentRoutes
 import io.ktor.application.*
 import io.ktor.auth.*
+import io.ktor.auth.jwt.*
 import io.ktor.routing.*
+import io.ktor.util.pipeline.*
 import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.id.EntityID
@@ -35,11 +37,12 @@ fun Application.authorizedRouting() =
         }
     }
 
-
 private fun getConnection(): Connection {
     val dbUrl = System.getenv("JDBC_DATABASE_URL")
     return DriverManager.getConnection(dbUrl)
 }
+
+fun PipelineContext<Unit, ApplicationCall>.getCurrentUserPhone(): String? = call.principal<JWTPrincipal>()?.payload?.getClaim("phoneNumber")?.asString()
 
 abstract class StringEntityClass<out E : Entity<String>>(table: IdTable<String>, entityType: Class<E>? = null) :
     EntityClass<String, E>(table, entityType)
