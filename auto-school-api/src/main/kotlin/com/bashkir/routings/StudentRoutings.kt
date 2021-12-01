@@ -1,7 +1,7 @@
 package com.bashkir.routings
 
 import com.bashkir.getCurrentUserPhone
-import com.bashkir.services.LessonsService
+import com.bashkir.services.StudentService
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
@@ -10,22 +10,35 @@ import org.koin.ktor.ext.inject
 import java.time.LocalDateTime
 
 fun Route.studentRoutes() {
-    val lessonsService: LessonsService by inject()
+    val studentService: StudentService by inject()
 
     route("/student") {
         get("/lessons") {
             val phoneNumber = getCurrentUserPhone() ?: ""
-            call.respond(lessonsService.getLessons(phoneNumber))
+            call.respond(studentService.getLessons(phoneNumber))
         }
 
         delete("/lessons") {
             val phoneNumber = getCurrentUserPhone() ?: ""
-            val userNow: LocalDateTime? = LocalDateTime.parse(call.parameters["now"])
+            val userNow: LocalDateTime? = LocalDateTime.parse(call.request.queryParameters["now"])
             if (userNow != null)
-                lessonsService.deleteLessons(phoneNumber, userNow)
+                studentService.deleteLessons(phoneNumber, userNow)
             else
-                lessonsService.deleteLessons(phoneNumber)
+                studentService.deleteLessons(phoneNumber)
             call.respond(HttpStatusCode.OK)
+        }
+
+        get("/teachers"){
+            call.respond(studentService.getTeachers())
+        }
+
+        get("/teachers/{id}/lessons"){
+            val teacherId = call.parameters["id"]?: ""
+            call.respond(studentService.getTeacherLessons(teacherId))
+        }
+
+        post("/signUp"){
+
         }
     }
 }
