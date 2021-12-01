@@ -11,7 +11,7 @@ import org.jetbrains.exposed.sql.javatime.datetime
 import org.jetbrains.exposed.sql.javatime.timestamp
 
 object LessonsTable : IntIdTable("lessons", "lessonid") {
-    val date = datetime("dateof")
+    val date = timestamp("dateof")
     val type = reference("typeid", LessonTypeTable)
     val phoneNumber = reference("phonenumber", EmployeesTable)
 }
