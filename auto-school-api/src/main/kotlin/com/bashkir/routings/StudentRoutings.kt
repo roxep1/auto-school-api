@@ -7,6 +7,7 @@ import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import org.koin.ktor.ext.inject
+import java.time.Instant
 import java.time.LocalDateTime
 
 fun Route.studentRoutes() {
@@ -20,7 +21,7 @@ fun Route.studentRoutes() {
 
         delete("/lessons") {
             val phoneNumber = getCurrentUserPhone() ?: ""
-            val userNow: LocalDateTime? = LocalDateTime.parse(call.request.queryParameters["now"])
+            val userNow: Instant? = Instant.parse(call.request.queryParameters["now"])
             if (userNow != null)
                 studentService.deleteLessons(phoneNumber, userNow)
             else

@@ -3,6 +3,7 @@ package com.bashkir.services
 import com.bashkir.models.*
 import com.bashkir.models.types.Code
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.time.Instant
 import java.time.LocalDateTime
 
 class StudentService {
@@ -10,7 +11,7 @@ class StudentService {
         Students[studentId].lessons.toList().map { it.toModel() }
     }
 
-    fun deleteLessons(studentId: String, userNow: LocalDateTime) = transaction {
+    fun deleteLessons(studentId: String, userNow: Instant) = transaction {
         Students[studentId].lessons.filter { it.date.isBefore(userNow) }.forEach { it.delete() }
     }
 
