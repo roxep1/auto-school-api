@@ -13,23 +13,23 @@ import org.jetbrains.exposed.sql.javatime.date
 object EmployeesTable : IdTable<String>("employees",) {
     override val id: Column<EntityID<String>> = reference("phonenumber", PeopleTable)
     val salary: Column<Float> = float("salary")
-    val coef: Column<Int> = integer("coef")
-    val positionName: Column<String> = text("positionname")
+    val coef = float("coef")
+    val position = reference("positionname", PositionTable)
     val dateOfDismissal = date("dateofdismissal").nullable()
 }
 
 class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Employee.Model> {
     companion object : StringEntityClass<Employee>(EmployeesTable) {
-        fun new(initEmp: Employee.() -> Unit, initMan: People.() -> Unit): Employee {
-            val man = People.new(initMan)
-            return new(id = man.id.value, initEmp)
+        fun new(id : String, initEmp: Employee.() -> Unit, initMan: People.() -> Unit): Employee {
+            People.new(id = id,initMan)
+            return new(id = id, initEmp)
         }
     }
 
     var peopleInfo by People referencedOn EmployeesTable.id
     var salary by EmployeesTable.salary
     var coef by EmployeesTable.coef
-    var positionName by EmployeesTable.positionName
+    var position by Position referencedOn EmployeesTable.position
     var dateOfDismissal by EmployeesTable.dateOfDismissal
 
     override fun toModel() = Model(this)
@@ -39,7 +39,7 @@ class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Emplo
         val peopleInfo = emp!!.peopleInfo.toModel()
         val salary = emp!!.salary
         val coef = emp!!.coef
-        val positionName = emp!!.positionName
+        val positionName = emp!!.position.toModel()
         val dateOfDismissal = emp?.dateOfDismissal?.toString()
     }
 }
