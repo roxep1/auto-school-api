@@ -39,7 +39,7 @@ class Employee(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Emplo
         val peopleInfo = emp!!.peopleInfo.toModel()
         val salary = emp!!.salary
         val coef = emp!!.coef
-        val positionName = emp!!.position.toModel()
+        val positionName = emp!!.position.id.value
         val dateOfDismissal = emp?.dateOfDismissal?.toString()
     }
 }
