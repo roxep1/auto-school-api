@@ -71,7 +71,6 @@ interface EntityWithModel<T> {
 }
 
 fun Application.insertTestData() = transaction {
-    val positionTeacher = Position.new("Инструктор") {}
     val positionInstructor = Position.new("Преподаватель") {}
 
     val man1 = Employee.new("74945952634", {
@@ -91,7 +90,7 @@ fun Application.insertTestData() = transaction {
     val man2 = Employee.new("79640000000", {
         salary = 30000F
         coef = 1.5F
-        position = positionTeacher
+        position = Position["Инструктор"]
 
     }) {
         name = "Настасья"
