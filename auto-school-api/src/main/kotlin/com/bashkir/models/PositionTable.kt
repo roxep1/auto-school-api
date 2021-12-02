@@ -11,7 +11,7 @@ import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.sql.Column
 
-object PositionTable : StringIdTable("position", "positionName", 18) {
+object PositionTable : StringIdTable("position", "positionname", 18) {
 
 }
 
