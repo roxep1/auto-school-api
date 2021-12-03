@@ -8,7 +8,6 @@ import io.ktor.response.*
 import io.ktor.routing.*
 import org.koin.ktor.ext.inject
 import java.time.Instant
-import java.time.LocalDateTime
 
 fun Route.studentRoutes() {
     val studentService: StudentService by inject()
@@ -29,17 +28,18 @@ fun Route.studentRoutes() {
             call.respond(HttpStatusCode.OK)
         }
 
-        get("/teachers"){
+        get("/teachers") {
             call.respond(studentService.getTeachers())
         }
 
-        get("/teachers/{id}/lessons"){
-            val teacherId = call.parameters["id"]?: ""
+        get("/teachers/{id}/lessons") {
+            val teacherId = call.parameters["id"] ?: ""
             call.respond(studentService.getTeacherLessons(teacherId))
         }
 
-        post("/signUp"){
-
+        post("/signUp/{id}") {
+            studentService.signUpTeacher(getCurrentUserPhone() ?: "", call.parameters["id"]?.toInt() ?: -1)
+            call.respond(HttpStatusCode.OK)
         }
     }
 }
