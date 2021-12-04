@@ -9,14 +9,12 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.named
 import org.koin.ktor.ext.get
 import org.koin.ktor.ext.inject
-import java.util.*
 
 //@KtorExperimentalLocationsAPI
 fun Application.configureAuthentication() {
@@ -40,11 +38,10 @@ fun Application.configureAuthentication() {
 
     routing {
         post("/login") {
-            val password = call.request.queryParameters["password"]
-            val login = call.request.queryParameters["login"]
+            val cred = call.receive<Cred>()
             val user = peopleService.login(
-                login ?: "",
-                password ?: ""
+                cred.login ,
+                cred.password
             )
             if (user != null) {
                 val token: String by this@routing.inject(qualifier = named("token")) {
@@ -58,3 +55,8 @@ fun Application.configureAuthentication() {
         }
     }
 }
+
+data class Cred(
+    val login: String,
+    val password: String
+)
