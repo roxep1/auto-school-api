@@ -28,7 +28,6 @@ class LessonType(id: EntityID<Int>): IntEntity(id), EntityWithModel<LessonType.M
 
     @Serializable
     data class Model(@Transient private val type: LessonType? = null) {
-
         val id = type!!.id.value
         val name = type!!.name
         val duration = type!!.duration

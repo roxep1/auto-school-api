@@ -18,23 +18,13 @@ fun Route.studentRoutes() {
             call.respond(studentService.getLessons(phoneNumber))
         }
 
-        delete("/lessons") {
-            val phoneNumber = getCurrentUserPhone() ?: ""
-            val userNow: Instant? = Instant.parse(call.request.queryParameters["now"])
-            if (userNow != null)
-                studentService.deleteLessons(phoneNumber, userNow)
-            else
-                studentService.deleteLessons(phoneNumber)
-            call.respond(HttpStatusCode.OK)
-        }
-
         get("/teachers") {
             call.respond(studentService.getTeachers())
         }
 
         get("/teachers/{id}/lessons") {
             val teacherId = call.parameters["id"] ?: ""
-            call.respond(studentService.getTeacherLessons(teacherId))
+            call.respond("test")
         }
 
         post("/signUp/{id}") {

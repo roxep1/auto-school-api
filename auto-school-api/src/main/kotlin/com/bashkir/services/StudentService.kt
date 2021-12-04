@@ -13,14 +13,6 @@ class StudentService {
         Students[studentId].lessons.toList().map { it.toModel() }
     }
 
-    fun deleteLessons(studentId: String, userNow: Instant) = transaction {
-        Students[studentId].lessons.filter { it.date.isBefore(userNow) }.forEach { it.delete() }
-    }
-
-    fun deleteLessons(studentId: String) = transaction {
-        Students[studentId].lessons.forEach { it.delete() }
-    }
-
     fun getTeachers(): List<Employee.Model> = transaction {
         People.find { PeopleTable.code eq Code.TEACHER }.map { Employee[it.id].toModel() }
     }

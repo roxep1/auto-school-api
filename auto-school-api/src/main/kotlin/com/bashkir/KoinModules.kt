@@ -27,7 +27,7 @@ val mainModule = module {
             .withAudience(JWTThings.Audience.getValue(environment))
             .withIssuer(JWTThings.Issuer.getValue(environment))
             .withClaim("phoneNumber", phoneNumber)
-            .withExpiresAt(Date(System.currentTimeMillis() + 60000))
+            .withExpiresAt(Date(System.currentTimeMillis() + 360000))
             .sign(Algorithm.HMAC256(JWTThings.Secret.getValue(environment)))
     }
 
