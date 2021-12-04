@@ -24,7 +24,7 @@ fun Route.studentRoutes() {
 
         get("/teachers/{id}/lessons") {
             val teacherId = call.parameters["id"] ?: ""
-            call.respond("test")
+            call.respond(studentService.getTeacherLessons(teacherId))
         }
 
         post("/signUp/{id}") {
