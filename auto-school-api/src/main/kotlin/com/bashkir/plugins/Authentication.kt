@@ -9,6 +9,7 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToJsonElement
 import org.koin.core.parameter.parametersOf
@@ -56,6 +57,7 @@ fun Application.configureAuthentication() {
     }
 }
 
+@Serializable
 data class Cred(
     val login: String,
     val password: String
