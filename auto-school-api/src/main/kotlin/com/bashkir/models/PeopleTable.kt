@@ -44,8 +44,7 @@ class People(id: EntityID<String>): Entity<String>(id), EntityWithModel<People.M
         val lastName = man!!.lastName
         val middleName = man?.middleName
         val email = man?.email
-        val login = man!!.login
-        val password = man!!.password
-        val code = man!!.code
+        val cred : Cred? = null
+        val code = man!!.code.name
     }
 }

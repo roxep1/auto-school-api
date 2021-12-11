@@ -1,4 +1,4 @@
-package com.bashkir.models
+    package com.bashkir.models
 
 import com.bashkir.EntityWithModel
 import kotlinx.serialization.Serializable

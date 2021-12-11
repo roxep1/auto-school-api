@@ -16,11 +16,11 @@ object StudentsTable : IdTable<String>("students") {
     val tariff = reference("tariffid", TariffTable)
 }
 
-class Students(id: EntityID<String>): Entity<String>(id), EntityWithModel<Students.Model>{
-    companion object : StringEntityClass<Students>(StudentsTable){
-        fun new(initEmp: Students.() -> Unit, initMan: People.() -> Unit): Students {
-            val man = People.new(initMan)
-            return Students.new(id = man.id.value, initEmp)
+class Students(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Students.Model> {
+    companion object : StringEntityClass<Students>(StudentsTable) {
+        fun new(id : String, initStudent: Students.() -> Unit, initMan: People.() -> Unit): Students {
+            People.new(id, initMan)
+            return Students.new(id, initStudent)
         }
     }
 
@@ -29,12 +29,14 @@ class Students(id: EntityID<String>): Entity<String>(id), EntityWithModel<Studen
     var lessons by Lessons via SingUpsTable
 
     @Serializable
-    data class Model(@Transient val model: Students? = null){
+    data class Model(@Transient val model: Students? = null, @Transient val withLessons: Boolean = true) {
         val id = model!!.id.value
         val graduation = model!!.graduation.toString()
-        val tariff = model!!.tariff.name
-        val lessons = model!!.lessons.map { it.toModel() }
+        val tariff = model!!.tariff.toModel()
+        val lessons = if (withLessons) model!!.lessons.map { it.toModel() } else listOf()
     }
 
     override fun toModel(): Model = Model(this)
+
+    fun toModelWithoutLessons(): Model = Model(this, false)
 }

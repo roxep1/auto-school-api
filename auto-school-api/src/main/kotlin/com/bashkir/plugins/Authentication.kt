@@ -1,6 +1,7 @@
 package com.bashkir.plugins
 
 import com.auth0.jwt.JWTVerifier
+import com.bashkir.models.Cred
 import com.bashkir.services.PeopleService
 import io.ktor.application.*
 import io.ktor.auth.*
@@ -51,14 +52,8 @@ fun Application.configureAuthentication() {
                         user.phoneNumber
                     )
                 }
-                call.respond(Json.encodeToJsonElement(hashMapOf("token" to token)))
+                call.respond(Json.encodeToJsonElement(hashMapOf("token" to token, "role" to user.code)))
             } else call.respond(HttpStatusCode.BadRequest)
         }
     }
 }
-
-@Serializable
-data class Cred(
-    val login: String,
-    val password: String
-)
