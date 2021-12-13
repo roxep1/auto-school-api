@@ -23,14 +23,14 @@ class Students(id: EntityID<String>) : Entity<String>(id), EntityWithModel<Stude
             return Students.new(id, initStudent)
         }
     }
-
+    var peopleInfo by People referencedOn StudentsTable.id
     var graduation by StudentsTable.graduation
     var tariff by Tariff referencedOn StudentsTable.tariff
     var lessons by Lessons via SingUpsTable
 
     @Serializable
     data class Model(@Transient val model: Students? = null, @Transient val withLessons: Boolean = true) {
-        val id = model!!.id.value
+        val userInfo = model!!.peopleInfo.toModel()
         val graduation = model!!.graduation.toString()
         val tariff = model!!.tariff.toModel()
         val lessons = if (withLessons) model!!.lessons.map { it.toModel() } else listOf()
