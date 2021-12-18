@@ -1,8 +1,5 @@
 package com.bashkir.routings
 
-import com.bashkir.models.People
-import com.bashkir.models.SingUpsTable.student
-import com.bashkir.models.Students
 import com.bashkir.services.AdminService
 import io.ktor.application.*
 import io.ktor.http.*
