@@ -6,8 +6,8 @@ val koinVersion: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.5.30"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.5.30"
+    kotlin("jvm") version "1.6.0"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.6.0"
 }
 
 group = "com.bashkir"
