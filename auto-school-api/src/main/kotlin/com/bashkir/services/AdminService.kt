@@ -21,7 +21,6 @@ class AdminService {
             salary = employee.salary
             coef = employee.coef
             position = Position[employee.positionName]
-            dateOfDismissal = null
         }){
             set(user)
         }

@@ -16,13 +16,13 @@ private enum class JWTThings {
 }
 
 val mainModule = module {
-    single { AccountantService() }
-    single { AdminService() }
+//    single { AccountantService() }
+//    single { AdminService() }
     single { PeopleService() }
     single { StudentService() }
-    single { HumanResService() }
-    single { SharedService() }
-    single { TeacherService() }
+//    single { HumanResService() }
+//    single { SharedService() }
+//    single { TeacherService() }
 
     factory(named("token")) { (environment: ApplicationEnvironment, phoneNumber: String) ->
         JWT.create()
