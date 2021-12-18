@@ -4,7 +4,8 @@ enum class Code {
     STUDENT,
     TEACHER,
     ADMIN,
-    ACCOUNTANT;
+    ACCOUNTANT,
+    HR;
 
     override fun toString(): String = name
 }

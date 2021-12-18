@@ -34,6 +34,3 @@ class LessonType(id: EntityID<Int>): IntEntity(id), EntityWithModel<LessonType.M
         val onePlace = type!!.onePlace
     }
 }
-
-
-

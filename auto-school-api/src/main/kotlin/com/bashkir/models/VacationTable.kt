@@ -3,13 +3,12 @@
 import com.bashkir.EntityWithModel
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import org.jetbrains.exposed.dao.Entity
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
 
-object VacationTable: IntIdTable("vacation", "vacationid") {
+    object VacationTable: IntIdTable("vacation", "vacationid") {
     val coef = float("coef")
     val periodOfVacation = varchar("periodofvacation", 30)
     val employee = reference("phonenumber", EmployeesTable)

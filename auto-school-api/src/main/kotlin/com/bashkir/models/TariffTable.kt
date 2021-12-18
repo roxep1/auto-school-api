@@ -3,13 +3,10 @@ package com.bashkir.models
 import com.bashkir.EntityWithModel
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
-import org.jetbrains.exposed.dao.Entity
-import org.jetbrains.exposed.dao.EntityClass
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.Column
 
 object TariffTable: IntIdTable("tariffs", "tariffid") {
     val cost = float("cost")
