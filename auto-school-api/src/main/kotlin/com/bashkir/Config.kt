@@ -16,6 +16,7 @@ import org.jetbrains.exposed.dao.id.IdTable
 import org.jetbrains.exposed.sql.Column
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.koin.core.logger.Level
 import org.koin.ktor.ext.Koin
 import org.koin.logger.slf4jLogger
 import org.postgresql.util.PGobject
@@ -27,7 +28,7 @@ fun connectDatabase() =
 
 fun Application.configureKoin() {
     install(Koin) {
-        slf4jLogger()
+        slf4jLogger(level = Level.ERROR)
         modules(mainModule)
     }
 }
