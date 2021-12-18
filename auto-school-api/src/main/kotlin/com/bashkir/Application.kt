@@ -22,5 +22,5 @@ fun Application.module() {
 
     authorizedRouting()
 
-    insertTestData()
+//    insertTestData()
 }
