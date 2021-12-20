@@ -41,6 +41,7 @@ val mainModule = module {
         JWT.require(Algorithm.HMAC256(JWTThings.Secret.getValue(environment)))
             .withAudience(JWTThings.Audience.getValue(environment))
             .withIssuer(JWTThings.Issuer.getValue(environment))
+            .acceptExpiresAt(360000)
             .build()
     }
 }
