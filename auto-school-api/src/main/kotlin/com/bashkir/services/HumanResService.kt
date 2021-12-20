@@ -12,7 +12,7 @@ class HumanResService {
     fun createVacation(vacation: Vacation.Model) = transaction{
         Vacation.new {
             coef = vacation.coef
-            employee = Employee[vacation.employee]
+            employee = Employee[vacation.phoneNumber]
             periodOfVacation = vacation.periodOfVacation
         }
     }
