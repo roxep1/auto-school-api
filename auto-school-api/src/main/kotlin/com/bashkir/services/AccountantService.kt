@@ -5,7 +5,8 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 class AccountantService {
 
-    fun changeSalary(id: String, salary: Float) = transaction{
-        Employee[id].salary = salary
+    fun changeSalary(id: String, salary: Float) = transaction {
+        val emp = Employee[id]
+        emp.salary = salary
     }
 }
