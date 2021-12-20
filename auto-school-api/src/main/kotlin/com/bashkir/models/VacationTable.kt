@@ -26,7 +26,7 @@ class Vacation(id: EntityID<Int>): IntEntity(id), EntityWithModel<Vacation.Model
         val id = model!!.id.value
         val coef = model!!.coef
         val periodOfVacation = model!!.periodOfVacation
-        val employee = model!!.employee.id.value
+        val phoneNumber = model!!.employee.id.value
     }
 
     override fun toModel(): Model = Model(this)
