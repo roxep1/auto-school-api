@@ -28,7 +28,7 @@ class Lessons(id: EntityID<Int>) : IntEntity(id), EntityWithModel<Lessons.Model>
 
     @Serializable
     data class Model(@Transient val model: Lessons? = null) {
-        val id = model!!.id.value
+        val id = model?.id?.value
         val date = model!!.date.toString()
         val type = model!!.type.toModel()
         val phoneNumber = model?.phoneNumber?.id?.value
