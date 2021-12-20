@@ -23,7 +23,7 @@ class Vacation(id: EntityID<Int>): IntEntity(id), EntityWithModel<Vacation.Model
 
     @Serializable
     data class Model(@Transient val model: Vacation? = null) {
-        val id = model!!.id.value
+        val id = model?.id?.value
         val coef = model!!.coef
         val periodOfVacation = model!!.periodOfVacation
         val phoneNumber = model!!.employee.id.value
