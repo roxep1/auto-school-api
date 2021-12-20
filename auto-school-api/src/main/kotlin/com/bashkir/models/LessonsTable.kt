@@ -31,7 +31,7 @@ class Lessons(id: EntityID<Int>) : IntEntity(id), EntityWithModel<Lessons.Model>
         val id = model!!.id.value
         val date = model!!.date.toString()
         val type = model!!.type.toModel()
-        val phoneNumber = model!!.phoneNumber.id.value
-        val students = model!!.students.map { it.toModelWithoutLessons() }
+        val phoneNumber = model?.phoneNumber?.id?.value
+        val students = model?.students?.map { it.toModelWithoutLessons() }
     }
 }
