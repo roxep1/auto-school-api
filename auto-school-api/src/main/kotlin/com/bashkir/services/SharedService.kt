@@ -11,8 +11,8 @@ class SharedService {
         People.all().map { it.toModel() }
     }
 
-    fun getPositions(): List<Position.Model> = transaction {
-        Position.all().map { it.toModel() }
+    fun getPositions(): List<String> = transaction {
+        Position.all().map { it.toModel().position }
     }
 
     fun getTariffs(): List<Tariff.Model> = transaction {
